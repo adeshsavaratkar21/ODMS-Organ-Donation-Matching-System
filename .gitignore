@@ -1,0 +1,42 @@
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+.flaskenv
+
+# Python
+.venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / React / Vite
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.vite/
+
+# Local databases and backups
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Logs, coverage, and temporary files
+*.log
+coverage/
+htmlcov/
+*.tmp
+*.bak
+
+# Editor and operating system
+.DS_Store
+Thumbs.db
