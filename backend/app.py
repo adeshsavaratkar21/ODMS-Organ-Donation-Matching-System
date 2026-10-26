@@ -1,4 +1,5 @@
 import os
+import re
 from datetime import datetime, date, timedelta
 from functools import wraps
 from pathlib import Path
@@ -27,7 +28,10 @@ app.config['SESSION_COOKIE_SECURE'] = os.getenv('COOKIE_SECURE', 'false').lower(
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True, origins=[os.getenv('FRONTEND_ORIGIN', 'http://localhost:5173'), 'http://127.0.0.1:5173'])
+CORS(app, supports_credentials=True, origins=[
+    re.compile(r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$"),
+    os.getenv('FRONTEND_ORIGIN', 'http://localhost:5173')
+])
 
 class Facility(db.Model):
     id = db.Column(db.Integer, primary_key=True)
